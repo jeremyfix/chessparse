@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import os
 import sys
 import logging
 import numpy as np
@@ -15,15 +16,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 # The parser of input arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('--mode', type=int,
-                    choices=[1, 2],
-                    help="Which type of grid are we processing?",
-                    required=True)
 parser.add_argument('imagefile', nargs=1,
                     help='The image file to process')
 parser.add_argument('--delta_theta',
-                    default=np.pi/50.0,
+                    default=0.01,
                     help="The tolerance on the orientation of horizontal lines")
+parser.add_argument('--output_dir', default='.',
+                    help="The directory where to save the images")
 args = parser.parse_args()
 
 delta_theta = float(args.delta_theta)
@@ -39,22 +38,22 @@ gray_image = cv2.cvtColor(rgb_image, cv2.COLOR_BGR2GRAY)
 
 # Little blur
 blur_image = cv2.GaussianBlur(gray_image,(7, 7),0)
-cv2.imwrite('0-blur.jpg', blur_image)
+cv2.imwrite(os.path.join(args.output_dir, '0-blur.jpg'), blur_image)
 # thres_image = cv2.threshold(blur_image, 0, 255,
 # cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
 thres_image = cv2.adaptiveThreshold(blur_image, 255,
                                     cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                     cv2.THRESH_BINARY, 7, 5)
 
-cv2.imwrite('1-threshold.jpg', thres_image)
+cv2.imwrite(os.path.join(args.output_dir, '1-threshold.jpg'), thres_image)
 # Binarize the image to find the grid 
 ngray = cv2.bitwise_not(thres_image)
-cv2.imwrite('2-not.jpg', ngray)
+cv2.imwrite(os.path.join(args.output_dir, '2-not.jpg'), ngray)
 
 # Dilation to fill in some gaps
 kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
 dilation = cv2.dilate(ngray, kernel, iterations=1)
-cv2.imwrite('3-dilation.jpg', dilation)
+cv2.imwrite(os.path.join(args.output_dir, '3-dilation.jpg'), dilation)
 
 # Detect the connected components
 retval, labels, stats, centroids = cv2.connectedComponentsWithStats(dilation, connectivity=4)
@@ -87,7 +86,7 @@ cv2.rectangle(result_image,
               (coordinates_grid["left"], coordinates_grid["top"]),
               (coordinates_grid["right"], coordinates_grid["bottom"]),
               color=(255, 0, 0), thickness=2)
-cv2.imwrite("4-grid.jpg", result_image)
+cv2.imwrite(os.path.join(args.output_dir, "4-grid.jpg"), result_image)
 
 # We can now crop the image around the grid
 # The cropped RGB image
@@ -97,8 +96,8 @@ result_grid = rgb_grid.copy()
 dilation_grid = dilation[coordinates_grid["top"]:coordinates_grid["bottom"],
                          coordinates_grid["left"]:coordinates_grid["right"]]
 
-cv2.imwrite("5-rgb_grid.jpg", rgb_grid)
-cv2.imwrite("5-dilation_grid.jpg", dilation_grid)
+cv2.imwrite(os.path.join(args.output_dir, "5-rgb_grid.jpg"), rgb_grid)
+cv2.imwrite(os.path.join(args.output_dir, "5-dilation_grid.jpg"), dilation_grid)
 
 # Detecting the vertical and horizontal lines
 
@@ -122,5 +121,5 @@ for rho, theta in lines:
         pt1 = (0, c)
         pt2 = (coordinates_grid["width"], int(m*coordinates_grid["width"] + c))
         cv2.line(result_grid, pt1, pt2, color=(0, 0, 255), thickness=1)
-cv2.imwrite('6-lines.jpg', result_grid)
+cv2.imwrite(os.path.join(args.output_dir, '6-lines.jpg'), result_grid)
  
