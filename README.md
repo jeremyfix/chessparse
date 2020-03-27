@@ -12,9 +12,10 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
     python3 parse.py --output_dir ./examples/chess1 chess1.png
 
-| Original image | Blured | Threshold | Not | 
-| :---: | :---: | :---: | :---: |
-| [![](resized-chess1.png)](./chess1.png) | [![](examples/chess1/resized-0-blur.jpg)](./chess1/resized-0-blur.jpg) | [![](examples/chess1/resized-1-threshold.jpg)](./chess1/1-threshold.jpg) | [![](examples/chess1/resized-2-not.jpg)](./chess1/2-not.jpg) |
+| Original image | Blured | Threshold | Not | Dilation | Grid | Lines | 
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [![](resized-chess1.png)](./chess1.png) | [![](examples/chess1/resized-0-blur.jpg)](./chess1/0-blur.jpg) | [![](examples/chess1/resized-1-threshold.jpg)](./chess1/1-threshold.jpg) | [![](examples/chess1/resized-2-not.jpg)](./chess1/2-not.jpg) | [![](examples/chess1/resized-3-dilation.jpg)](./chess1/3-dilation.jpg) | [![](examples/chess1/resized-4-grid.jpg)](./chess1/4-grid.jpg) | [![](examples/chess1/resized-6-lines.jpg)](./chess1/6-lines.jpg) |
+
 
 
 
