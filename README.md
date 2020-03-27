@@ -14,7 +14,7 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
 | Original image | Blured | Threshold | Not | Dilation | Grid | Lines | 
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [![](resized-chess1.png)](./chess1.png) | [![](examples/chess1/resized-0-blur.jpg)](./chess1/0-blur.jpg) | [![](examples/chess1/resized-1-threshold.jpg)](./chess1/1-threshold.jpg) | [![](examples/chess1/resized-2-not.jpg)](./chess1/2-not.jpg) | [![](examples/chess1/resized-3-dilation.jpg)](./chess1/3-dilation.jpg) | [![](examples/chess1/resized-4-grid.jpg)](./chess1/4-grid.jpg) | [![](examples/chess1/resized-6-lines.jpg)](./chess1/6-lines.jpg) |
+| [![](resized-chess1.png)](./chess1.png) | [![](examples/chess1/resized-0-blur.jpg)](./examples/chess1/0-blur.jpg) | [![](examples/chess1/resized-1-threshold.jpg)](./examples/chess1/1-threshold.jpg) | [![](examples/chess1/resized-2-not.jpg)](./examples/chess1/2-not.jpg) | [![](examples/chess1/resized-3-dilation.jpg)](./examples/chess1/3-dilation.jpg) | [![](examples/chess1/resized-4-grid.jpg)](./examples/chess1/4-grid.jpg) | [![](examples/chess1/resized-6-lines.jpg)](./examples/chess1/6-lines.jpg) |
 
 
 
