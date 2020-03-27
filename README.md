@@ -12,6 +12,10 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
     python3 parse.py --output_dir ./examples/chess1 chess1.png
 
+|         Original image           |
+| :------------------------------: |
+| ![](examples/chess1/0-blur.jpg)  |
+
 ## Example 2
 
     python3 parse.py --output_dir ./examples/chess2 chess2.png
