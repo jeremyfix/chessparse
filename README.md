@@ -23,6 +23,10 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
     python3 parse.py --output_dir ./examples/chess2 chess2.png
 
+| Original image | Blured | Threshold | Not | Dilation | Grid | Lines | 
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [![](resized-chess2.png)](./chess2.png) | [![](examples/chess2/resized-0-blur.jpg)](./examples/chess2/0-blur.jpg) | [![](examples/chess2/resized-1-threshold.jpg)](./examples/chess2/1-threshold.jpg) | [![](examples/chess2/resized-2-not.jpg)](./examples/chess2/2-not.jpg) | [![](examples/chess2/resized-3-dilation.jpg)](./examples/chess2/3-dilation.jpg) | [![](examples/chess2/resized-4-grid.jpg)](./examples/chess2/4-grid.jpg) | [![](examples/chess2/resized-6-lines.jpg)](./examples/chess2/6-lines.jpg) |
+
 
 # Note
 
