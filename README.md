@@ -12,14 +12,9 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
     python3 parse.py --output_dir ./examples/chess1 chess1.png
 
-| Original image | Blured image |
-| :---: | :---: |
-| [![](resized-chess1.png)](./chess1.png) | ![](examples/chess1/resized-0-blur.jpg)  |
-
-|           Thresholded image                   |             Not image                  |
-| :-------------------------------------------: | :------------------------------------: |
-| ![](examples/chess1/resized-1-threshold.jpg)  | ![](examples/chess1/resized-2-notjpg)  |
-
+| Original image | Blured | Threshold | Not | 
+| :---: | :---: | :---: | :---: |
+| [![](resized-chess1.png)](./chess1.png) | [![](examples/chess1/resized-0-blur.jpg)](./chess1/resized-0-blur.jpg) | [![](examples/chess1/resized-1-threshold.jpg)](./chess1/1-threshold.jpg) | [![](examples/chess1/resized-2-not.jpg)](./chess1/2-not.jpg) |
 
 
 
