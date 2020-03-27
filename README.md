@@ -12,10 +12,17 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
     python3 parse.py --output_dir ./examples/chess1 chess1.png
 
-|              Original image                 |
-| :-----------------------------------------: |
-| ![](examples/chess1/0-blur.jpg | width=50)  |
+|            Original image           |             Blured image                 |
+| :---------------------------------: | :--------------------------------------: |
+| ![./chess1.png](resized-chess1.png) | ![](examples/chess1/resized-0-blur.jpg)  |
 
 ## Example 2
 
     python3 parse.py --output_dir ./examples/chess2 chess2.png
+
+
+# Note
+
+For resizing the generated images, I used
+
+    find . -type f -name '*.jpg' -execdir bash -c 'convert -resize 25% ${0##*/}  resized-${0##*/}' \{\} \;
