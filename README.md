@@ -14,7 +14,7 @@ It is strongly inspired from a tutorial on using opencv to extract the grid of a
 
 |            Original image           |             Blured image                 |              Thresholded image                 |
 | :---------------------------------: | :--------------------------------------: |  :-------------------------------------------: |
-| ![./chess1.png](resized-chess1.png) | ![](examples/chess1/resized-0-blur.jpg)  |  ![](examples/chess1/resized-0-threshold.jpg)  |
+| ![./chess1.png](resized-chess1.png) | ![](examples/chess1/resized-0-blur.jpg)  |  ![](examples/chess1/resized-1-threshold.jpg)  |
 
 ## Example 2
 
