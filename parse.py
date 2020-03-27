@@ -7,31 +7,45 @@ import skimage
 import skimage.io
 import skimage.color
 import skimage.feature
+import argparse
 import cv2
 
 
 logging.basicConfig(level=logging.DEBUG)
 
-if len(sys.argv) != 2:
-    logging.error("Usage : {} imagefile".format(sys.argv[0]))
-    sys.exit(-1)
+# The parser of input arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--mode', type=int,
+                    choices=[1, 2],
+                    help="Which type of grid are we processing?",
+                    required=True)
+parser.add_argument('imagefile', nargs=1,
+                    help='The image file to process')
+args = parser.parse_args()
 
 
 # Load the image
-imagefilepath = sys.argv[1]
+imagefilepath = args.imagefile[0]
 logging.info("Opening {}".format(imagefilepath))
 
 # Convert it to grayscale
 rgb_image = cv2.imread(imagefilepath)
 gray_image = cv2.cvtColor(rgb_image, cv2.COLOR_BGR2GRAY)
 
+# Little blur
+blur_image = cv2.GaussianBlur(gray_image,(7, 7),0)
+cv2.imwrite('blur.jpg', blur_image)
+# thres_image = cv2.threshold(blur_image, 0, 255,
+# cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+thres_image = cv2.adaptiveThreshold(blur_image, 255,
+                                    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                    cv2.THRESH_BINARY, 7, 5)
+
 # Binarize the image to find the grid 
-ngray = cv2.bitwise_not(gray_image)
+ngray = cv2.bitwise_not(thres_image)
 # threshold the image, setting all foreground pixels to
 # 255 and all background pixels to 0
-thresh = cv2.threshold(gray_image, 0, 255,
-                        cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-cv2.imwrite('thres.jpg', thresh)
+cv2.imwrite('thres.jpg', thres_image)
 
 # lines = cv2.HoughLines(thresh,1,np.pi/180,850)
 # logging.info("{} lines detected".format(lines.shape[0]))
