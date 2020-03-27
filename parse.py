@@ -67,7 +67,6 @@ coordinates_grid = {"left": stats[largest_cc_idx, cv2.CC_STAT_LEFT],
                    }
 logging.info("BBox of the largest object {}".format(coordinates_grid))
 
-cv2.rectangle(result_image, (0, 0), (50, 50), color=(255, 0, 0), thickness=3)
 cv2.rectangle(result_image,
               (coordinates_grid["left"], coordinates_grid["top"]),
               (coordinates_grid["left"] + coordinates_grid["width"],
