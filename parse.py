@@ -113,13 +113,31 @@ for rho, theta in lines:
         pt1 = (rho, 0)
         pt2 = (rho, coordinates_grid["height"])
         vertical_lines.append(rho)
-        cv2.line(result_grid, pt1, pt2, color=(0, 0, 255), thickness=1)
+        cv2.line(result_grid, pt1, pt2, color=(0, 0, 255), thickness=3)
     if np.pi/2.0 - delta_theta <= theta <= np.pi/2.0 + delta_theta:
         m = -1./np.tan(theta)
         c = rho/np.sin(theta)
         horizontal_lines.append(c)
         pt1 = (0, c)
         pt2 = (coordinates_grid["width"], int(m*coordinates_grid["width"] + c))
-        cv2.line(result_grid, pt1, pt2, color=(0, 0, 255), thickness=1)
+        cv2.line(result_grid, pt1, pt2, color=(0, 0, 255), thickness=3)
 cv2.imwrite(os.path.join(args.output_dir, '6-lines.jpg'), result_grid)
- 
+
+
+gray_image = gray_image[coordinates_grid["top"]:coordinates_grid["bottom"],
+                         coordinates_grid["left"]:coordinates_grid["right"]]
+
+for rho, theta in lines:
+    if theta == 0:
+        pt1 = (rho, 0)
+        pt2 = (rho, coordinates_grid["height"])
+        vertical_lines.append(rho)
+        cv2.line(gray_image, pt1, pt2, color=(255,), thickness=3)
+    if np.pi/2.0 - delta_theta <= theta <= np.pi/2.0 + delta_theta:
+        m = -1./np.tan(theta)
+        c = rho/np.sin(theta)
+        horizontal_lines.append(c)
+        pt1 = (0, c)
+        pt2 = (coordinates_grid["width"], int(m*coordinates_grid["width"] + c))
+        cv2.line(gray_image, pt1, pt2, color=(255,), thickness=3)
+cv2.imwrite(os.path.join(args.output_dir, '7-gray.jpg'), gray_image)
